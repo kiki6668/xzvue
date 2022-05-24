@@ -1,27 +1,39 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import Index from '../views/Index.vue'
+import Products from '../views/Products.vue'
+import Details from '../views/Details.vue'
+import Notfound from '../views/Notfound.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: HomeView
-  },
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
+    {
+        path: '/',
+        name: 'home',
+        component: Index
+    },
+    {
+        path: '/products',
+        name: 'products',
+        component: Products
+    },
+    {
+        path: '/details/:lid',
+        name: 'details',
+        component: Details,
+        props: true
+    },
+    {
+        path: '/*',
+        name: '404',
+        component: Notfound,
+        props: true
+    },
 ]
 
 const router = new VueRouter({
-  routes
+    routes
 })
 
 export default router
